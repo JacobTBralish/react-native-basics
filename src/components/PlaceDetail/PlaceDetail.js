@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal, View, Image, Text, Button, StyleSheet } from "react-native";
 
-const PlaceDetail = props => {
+const placeDetail = props => {
   let modalContent = null;
 
   if (props.selectedPlace) {
@@ -14,7 +14,7 @@ const PlaceDetail = props => {
   }
   return (
     <Modal
-      onRequestClose={props.onModalClose}
+      onRequestClose={props.onModalClosed}
       visible={props.selectedPlace !== null}
       animationType="slide"
     >
@@ -22,10 +22,7 @@ const PlaceDetail = props => {
         {modalContent}
         <View>
           <Button title="Delete" color="red" onPress={props.onItemDeleted} />
-          <Button
-            title="Close"
-            onPress={() => props.onModalClose(props.selectedPlace.key)}
-          />
+          <Button title="Close" onPress={props.onModalClosed} />
         </View>
       </View>
     </Modal>
@@ -47,4 +44,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default PlaceDetail;
+export default placeDetail;

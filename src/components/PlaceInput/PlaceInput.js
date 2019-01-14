@@ -1,37 +1,41 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View, TextInput, Button } from "react-native";
+import { View, TextInput, Button, StyleSheet } from "react-native";
 
-export default class ListForm extends Component {
+class PlaceInput extends Component {
   state = {
     placeName: ""
   };
 
-  placeNameChangedHandler = text => {
-    this.setState({ placeName: text });
+  componentDidMount() {}
+
+  placeNameChangedHandler = val => {
+    this.setState({
+      placeName: val
+    });
   };
 
-  handleAdd = () => {
+  placeSubmitHandler = () => {
     if (this.state.placeName.trim() === "") {
       return;
     }
+
     this.props.onPlaceAdded(this.state.placeName);
-    // this.setState({ placeName: "" });
   };
+
   render() {
     return (
       <View style={styles.inputContainer}>
         <TextInput
-          style={styles.textInput}
-          underlineColorAndroid="black"
+          placeholder="An awesome place"
           value={this.state.placeName}
           onChangeText={this.placeNameChangedHandler}
-          placeholder="Awesome placeholder"
+          style={styles.placeInput}
+          underlineColorAndroid="#beee"
         />
         <Button
-          style={styles.addButton}
           title="Add"
-          color="green"
-          onPress={this.handleAdd}
+          style={styles.placeButton}
+          onPress={this.placeSubmitHandler}
         />
       </View>
     );
@@ -40,15 +44,18 @@ export default class ListForm extends Component {
 
 const styles = StyleSheet.create({
   inputContainer: {
+    // flex: 1,
     width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center"
   },
-  textInput: {
+  placeInput: {
     width: "70%"
   },
-  addButton: {
+  placeButton: {
     width: "30%"
   }
 });
+
+export default PlaceInput;

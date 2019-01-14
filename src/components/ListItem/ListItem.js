@@ -1,28 +1,25 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 
-const ListItem = props => {
-  return (
-    <TouchableOpacity onPress={props.onPress}>
-      <View style={styles.listItem}>
-        <Image
-          // This will allow for the aspect ratio to be automatically set (landspace will not be cut off)
-          //   resizeMode="contain"
-          style={styles.placeImage}
-          source={props.image}
-        />
-        <Text>{props.place}</Text>
-      </View>
-    </TouchableOpacity>
-  );
-};
+const listItem = props => (
+  <TouchableOpacity onPress={props.onItemPressed}>
+    <View style={styles.listItem}>
+      <Image
+        resizeMode="cover"
+        source={props.placeImage}
+        style={styles.placeImage}
+      />
+      <Text>{props.placeName}</Text>
+    </View>
+  </TouchableOpacity>
+);
 
 const styles = StyleSheet.create({
   listItem: {
     width: "100%",
+    marginBottom: 5,
     padding: 10,
     backgroundColor: "#eee",
-    marginBottom: 5,
     flexDirection: "row",
     alignItems: "center"
   },
@@ -33,4 +30,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ListItem;
+export default listItem;
